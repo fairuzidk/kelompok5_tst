@@ -1,0 +1,114 @@
+INFO KELOMPOK X
+================
+
+1. INFORMASI DATABASE
+---------------------
+Nama database (DB_DATABASE pada file .env):
+ISI_NAMA_DATABASE_DARI_FILE_ENV
+
+Catatan:
+Ganti teks di atas dengan nilai DB_DATABASE yang sebenarnya dari file .env.
+Jangan mencantumkan DB_USERNAME atau DB_PASSWORD database jika file ini akan dibagikan.
+
+
+2. KREDENSIAL AKUN TESTING
+--------------------------
+Akun ADMIN
+- Email    : budi@example.com
+- Password : rahasia123
+- Role     : admin
+
+Akun USER
+- Email    : andi@example.com
+- Password : rahasia123
+- Role     : user
+
+Catatan:
+Kredensial di atas mengikuti DatabaseSeeder yang dibuat pada percakapan ini.
+Password disimpan dalam database menggunakan Hash::make().
+
+
+3. DAFTAR ENDPOINT API UNTUK POSTMAN
+------------------------------------
+Base URL:
+http://127.0.0.1:8000/api
+
+Format pengiriman data:
+- Untuk POST, PUT, dan PATCH: Body > raw > JSON.
+- Untuk GET dan DELETE: tidak perlu Body.
+- Ganti {id} dengan ID data yang ingin dilihat, diubah, atau dihapus.
+
+A. USERS
+- POST   /users       - Menambahkan user
+- GET    /users       - Menampilkan semua user (password tidak ditampilkan)
+- PUT    /users/{id}  - Mengubah data user
+- PATCH  /users/{id}  - Mengubah sebagian data user
+- DELETE /users/{id}  - Menghapus user
+
+B. BUKU
+- POST   /buku        - Menambahkan buku
+- GET    /buku        - Menampilkan semua buku
+- PUT    /buku/{id}   - Mengubah data buku
+- PATCH  /buku/{id}   - Mengubah sebagian data buku
+- DELETE /buku/{id}   - Menghapus buku
+
+C. KATEGORI
+- POST   /kategori       - Menambahkan kategori
+- GET    /kategori       - Menampilkan semua kategori
+- PUT    /kategori/{id}  - Mengubah data kategori
+- PATCH  /kategori/{id}  - Mengubah sebagian data kategori
+- DELETE /kategori/{id}  - Menghapus kategori
+
+D. LOKASI BUKU
+- POST   /lokasi-buku       - Menambahkan lokasi/rak buku
+- GET    /lokasi-buku       - Menampilkan semua lokasi buku
+- PUT    /lokasi-buku/{id}  - Mengubah data lokasi buku
+- PATCH  /lokasi-buku/{id}  - Mengubah sebagian data lokasi buku
+- DELETE /lokasi-buku/{id}  - Menghapus lokasi buku
+
+E. ANGGOTA
+- POST   /anggota       - Menambahkan anggota
+- GET    /anggota       - Menampilkan semua anggota
+- PUT    /anggota/{id}  - Mengubah data anggota
+- PATCH  /anggota/{id}  - Mengubah sebagian data anggota
+- DELETE /anggota/{id}  - Menghapus anggota
+
+F. PETUGAS
+- POST   /petugas       - Menambahkan petugas
+- GET    /petugas       - Menampilkan semua petugas
+- PUT    /petugas/{id}  - Mengubah data petugas
+- PATCH  /petugas/{id}  - Mengubah sebagian data petugas
+- DELETE /petugas/{id}  - Menghapus petugas
+
+
+4. KETERANGAN HAK AKSES
+-----------------------
+PENTING:
+Berdasarkan route dan controller yang dibuat pada percakapan ini, endpoint di atas
+belum dipasangi middleware autentikasi atau pembatasan role admin/user.
+
+Artinya:
+- Hak akses endpoint saat ini: PUBLIK / belum dibatasi oleh role.
+- Akun admin dan user sudah dibuat oleh seeder, tetapi role tersebut belum otomatis
+  membatasi akses API.
+- Jangan gunakan konfigurasi ini untuk aplikasi produksi sebelum menambahkan
+  autentikasi (misalnya Laravel Sanctum) dan middleware/otorisasi role.
+
+Rencana pembatasan akses yang disarankan:
+- ADMIN: boleh POST, PUT, PATCH, dan DELETE untuk seluruh data.
+- USER : sebaiknya hanya boleh GET data yang diizinkan.
+- USERS: pembuatan akun dan pengubahan role sebaiknya dibatasi khusus admin.
+
+
+5. PERINTAH MENJALANKAN PROJECT
+-------------------------------
+Jalankan migration dan seeder (PERHATIAN: migrate:fresh menghapus seluruh data lama):
+php artisan migrate --seed
+
+Jalankan server:
+php artisan serve
+
+Periksa daftar route:
+php artisan route:list --path=api
+
+Kemudian gunakan Base URL di atas pada Postman.
